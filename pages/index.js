@@ -1,5 +1,9 @@
-import styles from "../styles/Home.module.css";
-
+import Hero from "../components/homePage/Hero";
+// TODO create home page(pretty)
 export default function Home() {
-  return <div className={styles.container}>Hi world</div>;
+  return (
+    <div>
+      <Hero ></Hero>
+    </div>
+  );
 }
