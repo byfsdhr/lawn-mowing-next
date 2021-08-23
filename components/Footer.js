@@ -24,52 +24,81 @@ export default function Footer() {
       url: "http://github.com/byfsdhr",
     },
   ];
-  const companyInfo = {
-    name: "Bills Mowing",
-    desc: "Bills Mowing is a site for people cut their yarn grass...",
-  };
-  const usefulLink = {};
-  const footInfo = [{}];
+
+  const usefulLinks = [
+    {
+      name: "Home",
+      url: "/",
+    },
+    {
+      name: "About us",
+      url: "/",
+    },
+    {
+      name: "Services",
+      url: "/",
+    },
+    {
+      name: "FAQ",
+      url: "/",
+    },
+    {
+      name: "Privacy Policy",
+      url: "/",
+    },
+  ];
+
+  const ourServices = [
+    {
+      name: "Lawn Mowing",
+      url: "/",
+    },
+    {
+      name: "Edging Hedges",
+      url: "/",
+    },
+    {
+      name: "Gargen Rubbish",
+      url: "/",
+    },
+    {
+      name: "Others",
+      url: "/",
+    },
+  ];
+
+  const footerLinks = [
+    { name: "Useful Links", links: usefulLinks },
+    { name: "Our Services", links: ourServices },
+  ];
+
   return (
     <div className="bg-cover bg-center bg-gray-600	">
       <div>
-        <div className="container mx-auto px-6 lg:px-20 py-12">
-          <div className="lg:flex">
+        <div className="container mx-auto px-6 lg:px-20 py-10">
+          <div className="sm:flex">
             <div className="w-full lg:w-2/3">
               <div className="lg:flex">
-                <div className="w-full mb-12 lg:mb-0 lg:w-1/2">
-                  <h2 className="font-bold text-xl text-gray-100 mb-4">
-                    Bills Mowing
-                  </h2>
-                  <p className="text-gray-400">
-                    Bills Mowing is a site for people cut their yarn grass...
-                  </p>
-                </div>
                 <div className="w-full lg:w-1/2 lg:flex lg:px-6 ">
-                  <div className="w-full mb-6 lg:mb-0 lg:w-1/2">
-                    <h2 className="font-bold text-gray-100 mb-4">
-                      Useful Links
-                    </h2>
-                    <ul className="text-gray-500 text-sm">
-                      <li className="pt-1 pb-2">Home</li>
-                      <li className="pt-1 pb-2">About us</li>
-                      <li className="pt-1 pb-2">Services</li>
-                      <li className="pt-1 pb-2">FAQ</li>
-                      <li className="pt-1 pb-2">Privacy Policy</li>
-                    </ul>
-                  </div>
-                  <div className="w-full mb-6 lg:mb-0 lg:w-1/2">
-                    <h2 className="font-bold text-gray-100 mb-4">
-                      Our sevices
-                    </h2>
-                    <ul className="text-gray-500 text-sm">
-                      <li className="pt-1 pb-2">Web Design</li>
-                      <li className="pt-1 pb-2">Web Development</li>
-                      <li className="pt-1 pb-2">Product Management</li>
-                      <li className="pt-1 pb-2">Marketing</li>
-                      <li className="pt-1 pb-2">Graphics Design</li>
-                    </ul>
-                  </div>
+                  {footerLinks.map((i) => {
+                    return (
+                      <div
+                        key={i.name}
+                        className="w-full mb-6 lg:mb-0 lg:w-1/2"
+                      >
+                        <h2 className="font-bold text-gray-100 mb-4">
+                          {i.name}
+                        </h2>
+                        <ul className="text-gray-500 text-sm">
+                          {i.links.map((l) => (
+                            <li key={l.name} className="pt-1 pb-2">
+                              {l.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -93,7 +122,7 @@ export default function Footer() {
         </div>
       </div>
       {/* icon for social media */}
-      <div className="flex sm:justify-center xl:justify-start">
+      <div className="flex sm:justify-center xl:justify-center">
         {socialMedias.map((s) => {
           return (
             <>
@@ -107,7 +136,6 @@ export default function Footer() {
           );
         })}
       </div>
-
       <div>
         <div className="container mx-auto px-6 lg:px-20 py-3">
           <div className="flex font-light justify-center text-gray-400 text-sm">
