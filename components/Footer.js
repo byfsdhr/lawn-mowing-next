@@ -79,7 +79,7 @@ export default function Footer() {
   ];
 
   return (
-    <div className="bg-cover bg-center bg-gray-600	">
+    <div className="bg-cover bg-center bg-gray-900">
       <div>
         <div className="container mx-auto px-6 lg:px-20 py-10">
           <div className="sm:flex">
