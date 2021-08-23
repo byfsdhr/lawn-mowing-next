@@ -3,16 +3,19 @@ export default function Testimonial() {
     {
       id:1,
       name: "John Doe",
+      location:"",
       say: "Monitoring and tracking my health vitals anywhere I go and on any platform I use has never been easier.",
     },
     {
       id:2,
       name: "Trumph Doe",
+      location:"",
       say: "As an Athlete, this is the perfect product for me. I wear my Smart Health Monitoring Wristwatch everywhere I go, even in the bathroom since it's waterproof.",
     },
     {
       id:3,
       name: "Yeo Ha",
+      location:"",
       say: " I don't regret buying this wearble gadget. One of the best gadgets I own!.",
     },
   ];
