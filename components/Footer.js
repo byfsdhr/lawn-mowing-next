@@ -1,16 +1,35 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faGithubAlt,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
+
 // TODO sticky footer and notification
 export default function Footer() {
+  const socialMedias = [
+    {
+      name: "Facebook",
+      icon: faFacebookF,
+      url: "http://facebook.com",
+    },
+    {
+      name: "Instgram",
+      icon: faInstagram,
+      url: "http://Instgram.com",
+    },
+    {
+      name: "Github",
+      icon: faGithubAlt,
+      url: "http://github.com/byfsdhr",
+    },
+  ];
   const companyInfo = {
-    name:"Bills Mowing",
-    desc:"Bills Mowing is a site for people cut their yarn grass..."
-  }
-  const usefulLink = {
-
-  }
-  const footInfo =[
-    {}
-
-  ]
+    name: "Bills Mowing",
+    desc: "Bills Mowing is a site for people cut their yarn grass...",
+  };
+  const usefulLink = {};
+  const footInfo = [{}];
   return (
     <div className="bg-cover bg-center bg-gray-600	">
       <div>
@@ -73,26 +92,26 @@ export default function Footer() {
           </div>
         </div>
       </div>
-{/* icon for social media */}
-<div className="flex sm:justify-center xl:justify-start">
-          <a href="" className="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 text-gray-600 hover:text-white hover:bg-blue-600 hover:border-blue-600">
-            <i className="fab fa-facebook"></i>
-          </a>
-          <a href="" className="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 ml-2 text-gray-600 hover:text-white hover:bg-blue-400 hover:border-blue-400">
-            <i className="fab fa-twitter"></i>
-          </a>
-          <a href="" className="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 ml-2 text-gray-600 hover:text-white hover:bg-red-600 hover:border-red-600">
-            <i className="fab fa-google-plus-g"></i>
-          </a>
-        </div>
-        {/* ========== */}
+      {/* icon for social media */}
+      <div className="flex sm:justify-center xl:justify-start">
+        {socialMedias.map((s) => {
+          return (
+            <>
+              <a
+                href={s.url}
+                className="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 text-gray-600 hover:text-white bg-blue-100 hover:bg-blue-600 hover:border-blue-600"
+              >
+                <FontAwesomeIcon icon={s.icon} size="1x" />
+              </a>
+            </>
+          );
+        })}
+      </div>
 
       <div>
         <div className="container mx-auto px-6 lg:px-20 py-3">
           <div className="flex font-light justify-center text-gray-400 text-sm">
-            <p>
-              © Bills Mowing, Inc.
-            </p>
+            <p>© Bills Mowing, Inc.</p>
           </div>
         </div>
       </div>
