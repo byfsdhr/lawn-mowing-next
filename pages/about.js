@@ -1,19 +1,23 @@
-import { getAboutData } from '../lib/about'
+import { getAboutData } from "../lib/about";
 
 export async function getStaticProps() {
-  const aboutData = await getAboutData()
+  const aboutData = await getAboutData();
   return {
     props: {
-      aboutData
-    }
-  }
+      aboutData,
+    },
+  };
 }
 
-export default function about({aboutData}){
-  return(
+export default function about({ aboutData }) {
+  return (
     <>
-    <h1>About</h1>
-    <div dangerouslySetInnerHTML={{ __html: aboutData.contentHtml }} />
+      <div className="font-mono container mx-auto px-5 mt-16 mb-16">
+      <div className="w-full mx-auto lg:w-1/2">
+        <h1>About</h1>
+        <div dangerouslySetInnerHTML={{ __html: aboutData.contentHtml }} />
+      </div>
+      </div>
     </>
-  )
+  );
 }
