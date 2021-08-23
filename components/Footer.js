@@ -4,9 +4,15 @@ import {
   faGithubAlt,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-
+import logo from '../public/assets/logo.png'
+import Image from 'next/image'
 // TODO sticky footer and notification
 export default function Footer() {
+
+  const companyInfo ={ 
+    desc:'Our company make your home great again!'
+  }
+
   const socialMedias = [
     {
       name: "Facebook",
@@ -79,7 +85,11 @@ export default function Footer() {
           <div className="sm:flex">
             <div className="w-full lg:w-2/3">
               <div className="lg:flex">
-                <div className="w-full lg:w-1/2 lg:flex lg:px-6 ">
+                <div className="w-full lg:flex lg:px-6 ">
+                  <div className="w-full mb-6 lg:mb-0 lg:w-1/2">
+                    <Image src={logo} alt={companyInfo.name} />
+                    <p className="text-gray-300 text-large lg:mr-6">{companyInfo.desc}</p>
+                  </div>
                   {footerLinks.map((i) => {
                     return (
                       <div
