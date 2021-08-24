@@ -1,7 +1,6 @@
 ---
 title: 'Gardening'
 desc: 'We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented.'
-imgURl: '/public/asset/lawn.png'
 ---
 
 # haha

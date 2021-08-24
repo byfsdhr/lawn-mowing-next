@@ -4,17 +4,17 @@ export default function Features() {
   const services = [
     {
       name: "Lawn mowing",
-      imgUrl: "/../public/assets/lawn.jpg",
+      imgUrl: "/../public/assets/homepic.jpg",
       desc: "We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented.",
     },
     {
       name: "Gardening",
-      imgUrl: "/../public/assets/lawn.jpg",
+      imgUrl: "/../public/assets/homepic.jpg",
       desc: "Want the best looking garden in the street? Bills Mownig gardening team can help and design a maintenance schedule to suit you and your property and to keep your garden maintained and looking great.",
     },
     {
       name: "Lawn mowing",
-      imgUrl: "/../public/assets/lawn.jpg",
+      imgUrl: "/../public/assets/homepic.jpg",
       desc: "We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented.",
     },
   ];
