@@ -1,7 +1,7 @@
 export default function Articles() {
   return (
     <>
-      <div className="text-center">Lastest Articles</div>
+      <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 mt-8">Lastest Articles</h2>
       <div className="flex flex-col md:flex-row justify-center items-center mt-5 mb-5">
         <div className="transition-all ease-in-out duration-1000 flex flex-col justify-center mr-0 md:mr-5">
           <div slot="bottom-left" className="max-w-xs">

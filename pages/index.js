@@ -6,9 +6,9 @@ import Articles from "../components/homePage/Articles";
 export default function Home() {
   return (
     <div>
+      <Features />
       <Articles />
       <Hero />
-      <Features />
       <Testimonial / >
     </div>
   );
