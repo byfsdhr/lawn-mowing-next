@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Features() {
+export default function Services() {
   const services = [
     {
       name: "Lawn mowing",

@@ -1,12 +1,22 @@
 import Hero from "../components/homePage/Hero";
 import Testimonial from "../components/homePage/Testimonials";
-import Features from "../components/homePage/Features";
+import Services from "../components/homePage/Services";
 import Articles from "../components/homePage/Articles";
 // TODO create home page(pretty)
-export default function Home() {
+import { getServiceData } from "../lib/services";
+
+export async function getStaticProps() {
+  const serviceData = await getServiceData();
+  return {
+    props: {
+      serviceData,
+    },
+  };
+}
+export default function Home({serviceData}) {
   return (
     <div>
-      <Features />
+      <Services serviceData={serviceData} />
       <Articles />
       <Hero />
       <Testimonial / >
