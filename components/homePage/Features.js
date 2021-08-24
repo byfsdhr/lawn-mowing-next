@@ -29,10 +29,9 @@ export default function Features() {
           return (
             <>
               <div className="my-2 px-2 w-full overflow-hidden xl:my-3 xl:px-3 xl:w-1/2">
-                <div className="relative rounded-lg flex flex-col md:flex-row items-center md:shadow-xl md:h-72 mx-2">
+                <div className="relative rounded-lg flex flex-col md:flex-row items-center md:shadow-lg md:h-72 mx-2">
                   <div className="z-0 order-1 md:order-2 relative w-full md:w-1/2 h-80 md:h-full overflow-hidden rounded-lg md:rounded-none md:rounded-r-lg">
-                    <div 
-                    className="absolute inset-0 w-full h-full object-fill object-center bg-blue-400 bg-opacity-30 bg-cover bg-bottom">
+                    <div >
                       <Image src={s.imgUrl} alt={s.name} layout="fill" />
                     </div>
                   </div>
