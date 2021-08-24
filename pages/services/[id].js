@@ -24,7 +24,10 @@ export default function Services({ serviceData }) {
     <div>
       <div>{serviceData.id}</div>
       <br />
-      <div dangerouslySetInnerHTML={{ __html: serviceData.contentHtml }} />
+      <div
+        className="mt-8 mb-16 prose lg:prose-lg xl:prose-xl"
+        dangerouslySetInnerHTML={{ __html: serviceData.contentHtml }}
+      />
     </div>
   );
 }

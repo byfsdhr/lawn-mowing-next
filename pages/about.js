@@ -15,7 +15,10 @@ export default function about({ aboutData }) {
       <div className="container mx-auto px-5 mt-16 mb-16">
         <div className="w-full mx-auto lg:w-1/2">
           <h1>About</h1>
-          <div dangerouslySetInnerHTML={{ __html: aboutData.contentHtml }} />
+          <div
+            className="mt-8 mb-16 prose lg:prose-lg xl:prose-xl"
+            dangerouslySetInnerHTML={{ __html: aboutData.contentHtml }}
+          />
         </div>
       </div>
     </>
