@@ -19,7 +19,7 @@ export default function Home({serviceData}) {
       <Services serviceData={serviceData} />
       <Articles />
       <Hero />
-      <Testimonial / >
+      <Testimonial />
     </div>
   );
 }

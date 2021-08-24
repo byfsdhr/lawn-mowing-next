@@ -4,14 +4,13 @@ import {
   faGithubAlt,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import logo from '../public/assets/logo.png'
-import Image from 'next/image'
+import logo from "../public/assets/logo.png";
+import Image from "next/image";
 // TODO sticky footer and notification
 export default function Footer() {
-
-  const companyInfo ={ 
-    desc:'Our company make your home great again!'
-  }
+  const companyInfo = {
+    desc: "Our company make your home great again!",
+  };
 
   const socialMedias = [
     {
@@ -88,27 +87,22 @@ export default function Footer() {
                 <div className="w-full lg:flex lg:px-6 ">
                   <div className="w-full mb-6 lg:mb-0 lg:w-1/2">
                     <Image src={logo} alt={companyInfo.name} />
-                    <p className="text-gray-300 text-large lg:mr-6">{companyInfo.desc}</p>
+                    <p className="text-gray-300 text-large lg:mr-6">
+                      {companyInfo.desc}
+                    </p>
                   </div>
-                  {footerLinks.map((i) => {
-                    return (
-                      <div
-                        key={i.name}
-                        className="w-full mb-6 lg:mb-0 lg:w-1/2"
-                      >
-                        <h2 className="font-bold text-gray-100 mb-4">
-                          {i.name}
-                        </h2>
-                        <ul className="text-gray-500 text-sm">
-                          {i.links.map((l) => (
-                            <li key={l.name} className="pt-1 pb-2">
-                              {l.name}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    );
-                  })}
+                  {footerLinks.map((i) => (
+                    <div key={i.name} className="w-full mb-6 lg:mb-0 lg:w-1/2">
+                      <h2 className="font-bold text-gray-100 mb-4">{i.name}</h2>
+                      <ul className="text-gray-500 text-sm">
+                        {i.links.map((l) => (
+                          <li key={l.name} className="pt-1 pb-2">
+                            {l.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -133,18 +127,15 @@ export default function Footer() {
       </div>
       {/* icon for social media */}
       <div className="flex sm:justify-center xl:justify-center">
-        {socialMedias.map((s) => {
-          return (
-            <>
-              <a
-                href={s.url}
-                className="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 text-gray-600 hover:text-white bg-blue-100 hover:bg-blue-600 hover:border-blue-600"
-              >
-                <FontAwesomeIcon icon={s.icon} size="1x" />
-              </a>
-            </>
-          );
-        })}
+        {socialMedias.map((s) => (
+          <a
+            key={s.name}
+            href={s.url}
+            className="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 text-gray-600 hover:text-white bg-blue-100 hover:bg-blue-600 hover:border-blue-600"
+          >
+            <FontAwesomeIcon icon={s.icon} size="1x" />
+          </a>
+        ))}
       </div>
       <div>
         <div className="container mx-auto px-6 lg:px-20 py-3">
