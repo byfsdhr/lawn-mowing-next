@@ -1,7 +1,9 @@
-import { getServiceIds, getServiceData } from "../../lib/services";
+import { getDataIds, getDataById } from "../../lib/handleMarkdown";
+
+const folderName = "services";
 
 export async function getStaticPaths() {
-  const paths = await getServiceIds();
+  const paths = await getDataIds(folderName);
   return {
     paths,
     fallback: false,
@@ -9,7 +11,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const serviceData = await getServiceData(params.id);
+  const serviceData = await getDataById(params.id, folderName);
   return {
     props: {
       serviceData,
