@@ -1,7 +1,7 @@
 import { getDataById } from "../lib/handleMarkdown";
 
 export async function getStaticProps() {
-  const aboutData = await getDataById("about", "about");
+  const aboutData = await getDataById("about", "singlePage");
   return {
     props: {
       aboutData: aboutData,
