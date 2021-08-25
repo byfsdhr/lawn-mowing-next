@@ -7,7 +7,7 @@ import { getAllData } from "../lib/handleMarkdown";
 
 export async function getStaticProps() {
   const serviceData = await getAllData("services");
-  const articleData = await getAllData("posts");
+  const articleData = await getAllData("articles");
   return {
     props: {
       serviceData,
