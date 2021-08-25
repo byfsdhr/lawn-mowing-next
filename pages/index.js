@@ -7,17 +7,19 @@ import { getAllData } from "../lib/handleMarkdown";
 
 export async function getStaticProps() {
   const serviceData = await getAllData("services");
+  const articleData = await getAllData("posts");
   return {
     props: {
       serviceData,
+      articleData,
     },
   };
 }
-export default function Home({ serviceData }) {
+export default function Home({ serviceData, articleData }) {
   return (
     <div>
       <Services serviceData={serviceData} />
-      <Articles />
+      <Articles articleData={articleData} />
       <Hero />
       <Testimonial />
     </div>
