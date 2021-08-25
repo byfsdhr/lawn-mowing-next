@@ -2,13 +2,23 @@ import Link from "next/link";
 
 export default function Articles({ articleData }) {
   const limit = 3;
+  const sortedArticleData = articleData.sort(({ date: a }, { date, b }) => {
+    if (a < b) {
+      return 1;
+    } else if (a > b) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
   return (
     <>
       <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 mt-8">
         Lastest Articles
       </h2>
       <div className="flex flex-col md:flex-row justify-center items-center mt-5 mb-5">
-        {articleData
+        {sortedArticleData
           .slice(0, limit)
           .map(({ id, title, desc, date, author }) => (
             <div

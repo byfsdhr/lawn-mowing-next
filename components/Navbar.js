@@ -1,9 +1,13 @@
 import Link from "next/link";
-import { useState } from 'react';
-
+import { useState } from "react";
+import { makeSlugUrl } from "../lib/makeSlugUrl";
 
 export default function Navbar() {
   const [active, setActive] = useState(false);
+
+  const navItem = ["Home", "FAQs", "Our Team", "About"];
+
+  const quoteUrl = "";
 
   const handleClick = () => {
     setActive(!active);
@@ -25,9 +29,9 @@ export default function Navbar() {
             </span>
           </a>
         </Link>
-        <button 
-        className=" inline-flex p-3 hover:bg-green-600 rounded lg:hidden text-white ml-auto hover:text-white outline-none"
-        onClick={handleClick}
+        <button
+          className=" inline-flex p-3 hover:bg-green-600 rounded lg:hidden text-white ml-auto hover:text-white outline-none"
+          onClick={handleClick}
         >
           <svg
             className="w-6 h-6"
@@ -45,32 +49,27 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <div className={`${
-          active ? '' : 'hidden'
-        } w-full lg:inline-flex lg:flex-grow lg:w-auto
-        `}>
+        <div
+          className={`${
+            active ? "" : "hidden"
+          } w-full lg:inline-flex lg:flex-grow lg:w-auto
+        `}
+        >
           <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
-            <Link href="/">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ">
-                Home
-              </a>
-            </Link>
-            <Link href="/services">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white">
-                Services
-              </a>
-            </Link>
-            <Link href="/works">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white">
-                Our works
-              </a>
-            </Link>
-            <Link href="/about">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white">
-                About us
-              </a>
-            </Link>
-            <Link href="/">
+            {navItem.map((i) => {
+              let url = "";
+              if (i !== "Home") {
+                url = makeSlugUrl(i);
+              }
+              return (
+                <Link href={`/${url}`}>
+                  <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ">
+                    {i}
+                  </a>
+                </Link>
+              );
+            })}
+            <Link href={`/${quoteUrl}`}>
               <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-700 hover:text-white bg-yellow-500">
                 Get Quote
               </a>
