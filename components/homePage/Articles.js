@@ -17,7 +17,7 @@ export default function Articles({ articleData }) {
       <h2 className="text-4xl font-bold text-center text-gray-800 mb-8 mt-8">
         Lastest Articles
       </h2>
-      <div className="flex flex-col md:flex-row justify-center items-center mt-5 mb-5">
+      <div className="flex flex-wrap -mx-2 overflow-hidden md:-mx-2 xl:-mx-4 justify-center">
         {sortedArticleData
           .slice(0, limit)
           .map(({ id, title, desc, date, author }) => (

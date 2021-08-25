@@ -1,3 +1,4 @@
+import ContentLayout from "../../components/ContentLayout";
 import { getDataIds, getDataById } from "../../lib/handleMarkdown";
 
 const folderName = "articles";
@@ -20,14 +21,5 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Articles({ articleData }) {
-  return (
-    <div>
-      <div>{articleData.id}</div>
-      <br />
-      <div
-        className="mt-8 mb-16 prose lg:prose-lg xl:prose-xl"
-        dangerouslySetInnerHTML={{ __html: articleData.contentHtml }}
-      />
-    </div>
-  );
+  return <ContentLayout data={articleData} />;
 }
