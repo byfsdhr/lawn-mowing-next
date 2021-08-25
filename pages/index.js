@@ -17,9 +17,9 @@ export async function getStaticProps() {
 export default function Home({ serviceData, articleData }) {
   return (
     <div>
+      <Hero />
       <Services serviceData={serviceData} />
       <Articles articleData={articleData} />
-      <Hero />
       <Testimonial />
     </div>
   );
