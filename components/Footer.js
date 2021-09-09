@@ -6,6 +6,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import logo from "../public/assets/logo.png";
 import Image from "next/image";
+import Link from 'next/link'
+
 // TODO sticky footer and notification
 export default function Footer() {
   const companyInfo = {
@@ -37,7 +39,7 @@ export default function Footer() {
     },
     {
       name: "About us",
-      url: "/",
+      url: "/about",
     },
     {
       name: "Services",
@@ -45,11 +47,11 @@ export default function Footer() {
     },
     {
       name: "FAQ",
-      url: "/",
+      url: "/faqs",
     },
     {
-      name: "Privacy Policy",
-      url: "/",
+      name: "Contact us",
+      url: "/contact",
     },
   ];
 
@@ -97,7 +99,7 @@ export default function Footer() {
                       <ul className="text-gray-500 text-sm">
                         {i.links.map((l) => (
                           <li key={l.name} className="pt-1 pb-2">
-                            {l.name}
+                            <Link href={l.url}>{l.name}</Link> 
                           </li>
                         ))}
                       </ul>

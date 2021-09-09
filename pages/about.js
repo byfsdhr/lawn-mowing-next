@@ -11,7 +11,6 @@ export async function getStaticProps() {
 
 export default function about({ aboutData }) {
   return (
-    <>
       <div className="container mx-auto px-5 mt-16 mb-16">
         <div className="w-full mx-auto lg:w-1/2">
           <h1>{aboutData.title}</h1>
@@ -21,6 +20,5 @@ export default function about({ aboutData }) {
           />
         </div>
       </div>
-    </>
   );
 }
