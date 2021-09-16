@@ -7,7 +7,7 @@ export default function Navbar() {
 
   const navItem = ["Home", "FAQs", "Our Team", "About"];
 
-  const quoteUrl = "";
+  const quoteUrl = "https://lawn-mowing-client.herokuapp.com";
 
   const handleClick = () => {
     setActive(!active);
@@ -63,17 +63,16 @@ export default function Navbar() {
               }
               return (
                 <Link key={i} href={`/${url}`}>
-                  <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ">
+                  <a onClick={handleClick} className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-green-600 hover:text-white ">
                     {i}
                   </a>
                 </Link>
               );
             })}
-            <Link href={`/${quoteUrl}`}>
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-700 hover:text-white bg-yellow-500">
-                Get Quote
+              <a target="_blank" href={quoteUrl}
+              className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-700 hover:text-white bg-yellow-500 uppercase" rel="noreferrer">
+                login
               </a>
-            </Link>
           </div>
         </div>
       </nav>

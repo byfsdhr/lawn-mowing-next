@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -15,9 +15,12 @@ export default function Hero() {
           We’ll take care of your grass, so you can take care of everything else
         </h3>
 
-        <button className="bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider">
-          More details
-        </button>
+        <Link href="/quote" passHref>
+          <button className="bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider">
+            get quote now
+          </button>
+        </Link>
+
       </div>
     </div>
   );
