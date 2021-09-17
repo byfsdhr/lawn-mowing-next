@@ -47,7 +47,7 @@ export default function team() {
         {team.map((i) => (
           <div
             key={i.name}
-            className=" my-4 px-4 w-full overflow-hidden md:w-1/2 xl:my-6 xl:px-6 xl:w-1/2"
+            className=" my-4 px-4 w-full overflow-hidden md:w-1/2 xl:my-6 xl:px-6 xl:w-1/2 max-w-md"
           >
             <div className="bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg">
               <Image

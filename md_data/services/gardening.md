@@ -1,6 +1,7 @@
 ---
-title: 'Gardening'
-desc: 'We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented.'
+title: Gardening
+desc: We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented.
+coverImg: 1586280268958-9483002d016a
 ---
 
 # haha

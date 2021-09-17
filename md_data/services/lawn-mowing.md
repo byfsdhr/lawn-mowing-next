@@ -1,6 +1,7 @@
 ---
-title: "Lawn mowing"
-desc: "Blah,blah, keep your lawns and property looking tidy and well presented."
+title: Lawn mowing
+desc: Blah,blah, keep your lawns and property looking tidy and well presented.
+coverImg: 1630871453479-88ad2f2623dd
 ---
 
 Cras iaculis nunc in dolor congue tempus. Vivamus bibendum sollicitudin dictum. Curabitur scelerisque, lorem nec posuere lacinia, diam urna blandit orci, dignissim convallis ligula mauris ut neque. Suspendisse suscipit elit a magna pellentesque, sit amet venenatis leo venenatis.

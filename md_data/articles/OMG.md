@@ -1,6 +1,6 @@
 ---
 title: "OMG"
-desc: "We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented."
+desc: "We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presentedqweqweqweqweqwe."
 date: "2020-2-12"
 author: "Bob"
 ---

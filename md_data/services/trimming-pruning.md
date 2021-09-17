@@ -1,6 +1,7 @@
 ---
-title: "Trimming & Pruning"
-desc: "We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented."
+title: Trimming & Pruning
+desc: We can provide a regular mowing service, tailored to suit and designed to keep your lawns and property looking tidy and well presented.
+coverImg: 1622994891903-11358b2f814a
 ---
 
 Cras iaculis nunc in dolor congue tempus. Vivamus bibendum sollicitudin dictum. Curabitur scelerisque, lorem nec posuere lacinia, diam urna blandit orci, dignissim convallis ligula mauris ut neque. Suspendisse suscipit elit a magna pellentesque, sit amet venenatis leo venenatis.
