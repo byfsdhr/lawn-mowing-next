@@ -2,19 +2,27 @@ import { Controller, useForm } from "react-hook-form";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import axios from "axios"
-
-const QUOTE_API = 'https://j1ktcuphqg.execute-api.us-east-2.amazonaws.com/dev/quotes'
+import Modal from "../components/Modal";
+import { useState } from "react";
+import Autocomplete from "react-google-autocomplete";
 
 export default function Quote() {
+  const [showModal, setShowModal] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const {
     register,
     handleSubmit,
     control,
     watch,
+    setValue,
     formState: { errors }
   } = useForm();
 
   const onSubmit = async (data) => {
+
+    setIsSubmitting(true)
+
     const quote = {
       name: `${data.firstName} ${data.lastName}`,
       location: data.location,
@@ -24,21 +32,27 @@ export default function Quote() {
       yardSquare: data.yardSquare,
       garbageVolumn: data.garbageVolumn
     }
-    const res = await axios.post(QUOTE_API, quote).catch(err => console.log(err))
-
+    const res = await axios.post(process.env.NEXT_PUBLIC_QUOTE_API, quote).catch(err => console.log(err))
     if (res.status === 200) {
-      console.log('ok!', res.data);
+      console.log('Thanks for filling up our quote form. We will be in touch with you shortly.', res);
+      setShowModal(true)
     } else {
-      console.log('failed!', res.data);
+      alert('something wrong!!')
+      console.log('failed!', res.errors);
+      setIsSubmitting(false)
     }
-
   };
 
+  // console.log(watch());
   const selectedServices = watch().service
   const serviceList = ['Lawn mowing', 'Gardening', 'Garbage collection']
 
+
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+
+      <Modal showModal={showModal} setShowModal={setShowModal} />
+
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="max-w-md mx-auto">
@@ -53,17 +67,25 @@ export default function Quote() {
                 <div className="flex items-center space-x-4">
                   <div className="flex flex-col">
 
-                    <label className="leading-loose">First Name {errors.firstName && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">is required!</span>}</label>
+                    <label className="leading-loose">
+                      First Name
+                      {errors?.firstName?.type === "required" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">is required!</span>}
+                      {errors?.firstName?.type === "pattern" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">only alphabet 😥</span>}
+                    </label>
                     <div className="relative focus-within:text-gray-600 text-gray-400">
-                      <input {...register("firstName", { required: true })}
+                      <input {...register("firstName", { required: true, pattern: /^[A-Za-z]+$/i })}
                         type="text" className={`px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600`} placeholder="first" />
                     </div>
 
                   </div>
                   <div className="flex flex-col">
-                    <label className="leading-loose">Last Name {errors.lastName && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">is required!</span>}</label>
+                    <label className="leading-loose">
+                      Last Name
+                      {errors?.lastName?.type === "required" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">is required!</span>}
+                      {errors?.lastName?.type === "pattern" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">only alphabet 😵</span>}
+                    </label>
                     <div className="relative focus-within:text-gray-600 text-gray-400">
-                      <input {...register("lastName", { required: true })}
+                      <input {...register("lastName", { required: true, pattern: /^[A-Za-z]+$/i })}
                         type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="last" />
                     </div>
                   </div>
@@ -71,13 +93,38 @@ export default function Quote() {
                 </div>
 
                 <div className="flex flex-col">
-                  <label className="leading-loose">Your Location</label>
-                  <input {...register("location")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="123 king street" />
+                  <label className="leading-loose">
+                    Your Location
+                    {errors?.location?.type === "required" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">is required!we need calculate our fuel cost!</span>}
+                  </label>     
+                  <Controller 
+                    control={control}
+                    name="location"
+                    defaultValue=""
+                    rules={{required:true}}
+                    render={({field})=>(
+                      <Autocomplete
+                        {...field}
+                        className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" 
+                        apiKey={process.env.NEXT_PUBLIC_GOOGLE_API}
+                        onPlaceSelected={(place)=> setValue('location',place.formatted_address)}
+                        options={{
+                          fields:["formatted_address"],
+                          types: ["address"],
+                          componentRestrictions: { country: "nz" },
+                        }}
+                      />
+                    )}
+                  />             
                 </div>
 
                 <div className="flex flex-col">
-                  <label className="leading-loose">E-Mail {errors.email && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">Your email format not correct!</span>}</label>
-                  <input {...register("email", { required: true, pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
+                  <label className="leading-loose">E-Mail
+                    {errors?.email?.type === "required" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">You have to leave you email!</span>}
+                    {errors?.email?.type === "pattern" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">Your email format not correct!</span>}
+
+                  </label>
+                  <input {...register("email", { required: true, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
                     type="text"
                     className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                     placeholder="123@123.com" />
@@ -107,8 +154,10 @@ export default function Quote() {
                     </label>
                   ))}
 
-                  {selectedServices && (selectedServices.includes('Lawn mowing') || selectedServices.includes('Gardening')) && <input {...register("yardSquare")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="your yard squre?(squre meter)" />}
-                  {selectedServices && selectedServices.includes('Garbage collection') && <input {...register("garbageVolumn")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="your gabage volumn?(Liter)" />}
+                  {(selectedServices?.includes('Lawn mowing') || selectedServices?.includes('Gardening')) && 
+                  <input {...register("yardSquare")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your yard squre?(squre meter)" />}
+                  {selectedServices?.includes('Garbage collection') && 
+                  <input {...register("garbageVolumn")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your gabage volumn?(Liter)" />}
                 </div>
 
                 <div className="flex flex-col">
@@ -117,7 +166,9 @@ export default function Quote() {
                 </div>
               </div>
               <div className="pt-4 flex items-center space-x-4">
-                <button type="submit" className="bg-green-500 hover:bg-green-400 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Query</button>
+                {isSubmitting ? <button type="submit" className="bg-red-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Submitting...</button>
+                  : <button type="submit" className="bg-green-500 hover:bg-green-400 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Query</button>
+                }
               </div>
             </form>
           </div>

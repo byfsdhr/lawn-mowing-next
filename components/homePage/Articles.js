@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Articles({ articleData }) {
   const limit = 3;
-  const sortedArticleData = articleData.sort(({ date: a }, { date, b }) => {
+  const sortedArticleData = articleData.sort(({ date: a }, { b }) => {
     if (a < b) {
       return 1;
     } else if (a > b) {
@@ -25,7 +25,7 @@ export default function Articles({ articleData }) {
               key={id}
               className="transition-all ease-in-out duration-1000 flex flex-col justify-center mr-0 md:mr-5"
             >
-              <Link href={`/articles/${id}`}>
+              <Link href={`/articles/${id}`} passHref>
                 <div slot="bottom-left" className="max-w-xs">
                   <div className="container mx-auto shadow-lg rounded-lg max-w-md hover:shadow-2xl transition duration-300">
                     <img

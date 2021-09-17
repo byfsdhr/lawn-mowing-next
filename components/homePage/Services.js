@@ -13,7 +13,7 @@ export default function Services({ serviceData }) {
             key={id}
             className="transition-all ease-in-out duration-1000 flex flex-col justify-center mr-0 md:mr-5"
           >
-            <Link href={`/services/${id}`}>
+            <Link href={`/services/${id}`} passHref>
               <div slot="bottom-left" className="max-w-xs">
                 <div className="container mx-auto shadow-lg rounded-lg max-w-md hover:shadow-2xl transition duration-300">
                   <img

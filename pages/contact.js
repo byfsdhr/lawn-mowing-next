@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-const formApi = 'https://kv3kfkgvmj.execute-api.us-east-2.amazonaws.com/post-contact'
+const formApi = process.env.NEXT_PUBLIC_CONTACT_API
 
 export default function Contact() {
 
@@ -35,6 +35,13 @@ export default function Contact() {
     <div className="container mx-auto mt-16 mb-16">
       <div className="w-full mx-auto lg:w-1/2">
         <form className="w-full max-w-lg">
+
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3"></div>
+            <div className="md:w-2/3">
+              Contact us
+            </div>
+          </div>
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
@@ -74,21 +81,20 @@ export default function Contact() {
                 onChange={({ target }) => setMessage(target.value)}
                 className=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-yellow-600 h-48 resize-none"
                 value={message} />
-
-
             </div>
           </div>
 
-          <div className="md:flex md:items-center">
+          <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3"></div>
             <div className="md:w-2/3">
               <button
                 onClick={handleSubmit}
-                className="shadow bg-yellow-400 hover:bg-yellow-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                className="bg-green-500 hover:bg-green-400 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" type="button">
                 Submit
               </button>
               {resMessage}
             </div>
+            
           </div>
         </form>
       </div>

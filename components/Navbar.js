@@ -69,10 +69,10 @@ export default function Navbar() {
                 </Link>
               );
             })}
-              <a target="_blank" href={quoteUrl}
+            <a target="_blank" href={quoteUrl}
               className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-white font-bold items-center justify-center hover:bg-yellow-700 hover:text-white bg-yellow-500 uppercase" rel="noreferrer">
                 login
-              </a>
+            </a>
           </div>
         </div>
       </nav>
