@@ -44,7 +44,8 @@ export default function Quote() {
   };
 
   // console.log(watch());
-  const selectedServices = watch().service
+  const selectedServices = watch("service")
+  // console.log(selectedServices);
   const serviceList = ['Lawn mowing', 'Gardening', 'Garbage collection']
 
 
