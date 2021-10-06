@@ -9,6 +9,9 @@ import Autocomplete from "react-google-autocomplete";
 export default function Quote() {
   const [showModal, setShowModal] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [addressComponents,setAddressComponents] = useState([])
+
+  // console.log('addressComponents',addressComponents);
 
   const {
     register,
@@ -26,17 +29,21 @@ export default function Quote() {
     const quote = {
       name: `${data.firstName} ${data.lastName}`,
       location: data.location,
+      address_components:addressComponents,
       phone: data.phone,
       email: data.email,
       serviceItem: data.service,
       yardSquare: data.yardSquare,
       garbageVolumn: data.garbageVolumn
     }
+
     const res = await axios.post(process.env.NEXT_PUBLIC_QUOTE_API, quote).catch(err => console.log(err))
+
     if (res.status === 200) {
       console.log('Thanks for filling up our quote form. We will be in touch with you shortly.', res);
       setShowModal(true)
     } else {
+      console.log(quote);
       alert('something wrong!!')
       console.log('failed!', res.errors);
       setIsSubmitting(false)
@@ -45,9 +52,13 @@ export default function Quote() {
 
   // console.log(watch());
   const selectedServices = watch("service")
-  // console.log(selectedServices);
+  // console.log('selectedServices:',selectedServices);
   const serviceList = ['Lawn mowing', 'Gardening', 'Garbage collection']
 
+  // this code prevent press Enter key auto submitted by form-hook
+  const checkKeyDown = (e) => {
+    if (e.code === 'Enter') e.preventDefault();
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
@@ -63,7 +74,7 @@ export default function Quote() {
                 <p className="text-sm text-gray-500 font-normal leading-relaxed">We will get contact with you within 3 days after submit</p>
               </div>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="divide-y divide-gray-200">
+            <form onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => checkKeyDown(e)} className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div className="flex items-center space-x-4">
                   <div className="flex flex-col">
@@ -108,9 +119,14 @@ export default function Quote() {
                         {...field}
                         className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" 
                         apiKey={process.env.NEXT_PUBLIC_GOOGLE_API}
-                        onPlaceSelected={(place)=> setValue('location',place.formatted_address)}
+                        onPlaceSelected={
+                          (place)=> {
+                            setValue('location',place.formatted_address) 
+                            setAddressComponents(place.address_components)
+                          }
+                        }
                         options={{
-                          fields:["formatted_address"],
+                          fields:["formatted_address","address_components"],
                           types: ["address"],
                           componentRestrictions: { country: "nz" },
                         }}
@@ -155,9 +171,9 @@ export default function Quote() {
                     </label>
                   ))}
 
-                  {(selectedServices?.includes('Lawn mowing') || selectedServices?.includes('Gardening')) && 
+                  {selectedServices && (selectedServices?.includes('Lawn mowing') || selectedServices?.includes('Gardening')) && 
                   <input {...register("yardSquare")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your yard squre?(squre meter)" />}
-                  {selectedServices?.includes('Garbage collection') && 
+                  {selectedServices && selectedServices?.includes('Garbage collection') && 
                   <input {...register("garbageVolumn")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your gabage volumn?(Liter)" />}
                 </div>
 
@@ -167,7 +183,7 @@ export default function Quote() {
                 </div>
               </div>
               <div className="pt-4 flex items-center space-x-4">
-                {isSubmitting ? <button type="submit" className="bg-red-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Submitting...</button>
+                {isSubmitting ? <button type="submit" className="bg-red-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" disabled>Submitting...</button>
                   : <button type="submit" className="bg-green-500 hover:bg-green-400 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Query</button>
                 }
               </div>
