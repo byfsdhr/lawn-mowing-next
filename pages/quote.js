@@ -183,7 +183,7 @@ export default function Quote() {
                 </div>
               </div>
               <div className="pt-4 flex items-center space-x-4">
-                {isSubmitting ? <button type="submit" className="bg-red-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" disabled>Submitting...</button>
+                {isSubmitting ? <button type="submit" className="disabled:opacity-50 bg-red-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none" disabled>Submitting...</button>
                   : <button type="submit" className="bg-green-500 hover:bg-green-400 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Query</button>
                 }
               </div>
