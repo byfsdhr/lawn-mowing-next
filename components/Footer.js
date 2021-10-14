@@ -85,8 +85,6 @@ export default function Footer() {
 
   const [subEmail,setSubEmail] = useState('')
 
-  const SimpleForm = () => <MailchimpSubscribe url={process.env.NEXT_PUBLIC_MAILCHIMP_URL}/>
-
 
   return (
     <div className="bg-cover bg-center bg-gray-900">
