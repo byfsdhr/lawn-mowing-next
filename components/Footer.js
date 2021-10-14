@@ -7,6 +7,9 @@ import {
 import logo from "../public/assets/logo.png";
 import Image from "next/image";
 import Link from 'next/link'
+import MailchimpSubscribe from "react-mailchimp-subscribe"
+import { useState } from "react";
+
 
 // TODO sticky footer and notification
 export default function Footer() {
@@ -79,6 +82,12 @@ export default function Footer() {
     { name: "Our Services", links: ourServices },
   ];
 
+
+  const [subEmail,setSubEmail] = useState('')
+
+  const SimpleForm = () => <MailchimpSubscribe url={process.env.NEXT_PUBLIC_MAILCHIMP_URL}/>
+
+
   return (
     <div className="bg-cover bg-center bg-gray-900">
       <div>
@@ -114,7 +123,29 @@ export default function Footer() {
                 Subscribe our weely Newsletter to get regular updates about our
                 articles.
               </div>
-              <div className="flex">
+              <MailchimpSubscribe 
+                url={process.env.NEXT_PUBLIC_MAILCHIMP_URL}
+                render={({ subscribe, status, message }) =>(
+                  <>
+                    <div className="flex">
+                      <input
+                        value={subEmail}
+                        onChange={({target})=>setSubEmail(target.value)}
+                        type="text"
+                        className="rounded-l px-2 focus:outline-none"
+                      />
+                      <button onClick={()=>{subscribe({EMAIL:subEmail})}} 
+                        className="text-gray-200 rounded-r bg-red-500 hover:bg-blue-500 px-4 py-2 focus:outline-none">
+                      Submit
+                      </button>
+                    </div>
+                    {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
+                    {status === "error" && <div style={{ color: "red" }} dangerouslySetInnerHTML={{__html: message}}/>}
+                    {status === "success" && <div style={{ color: "green" }}>Subscribed !</div>}
+                  </>
+                )}
+              />
+              {/* <div className="flex">
                 <input
                   type="text"
                   className="rounded-l px-2 focus:outline-none"
@@ -122,7 +153,7 @@ export default function Footer() {
                 <button className="text-gray-200 rounded-r bg-red-500 hover:bg-blue-500 px-4 py-2 focus:outline-none">
                   Submit
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

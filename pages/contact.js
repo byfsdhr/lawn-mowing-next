@@ -39,7 +39,9 @@ export default function Contact() {
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3"></div>
             <div className="md:w-2/3">
+              <h1 className="text-4xl font-bold text-center text-gray-800 mb-16">
               Contact us
+              </h1>
             </div>
           </div>
           <div className="md:flex md:items-center mb-6">
