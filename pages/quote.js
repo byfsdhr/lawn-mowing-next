@@ -161,7 +161,6 @@ export default function Quote() {
 
                 <div className="flex flex-col">
                   <label className="leading-loose">Service</label>
-
                   {serviceList.map(service => (
                     <label key={service} className="inline-flex items-center">
                       <input {...register("service")}
@@ -172,9 +171,12 @@ export default function Quote() {
                   ))}
 
                   {selectedServices && (selectedServices?.includes('Lawn mowing') || selectedServices?.includes('Gardening')) && 
-                  <input {...register("yardSquare")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your yard squre?(squre meter)" />}
+                  <input {...register("yardSquare",{ pattern: /^\d+$/ })} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your yard squre?(squre meter)" />}
+                  {errors?.yardSquare?.type === "pattern" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">Only digit!</span>}
                   {selectedServices && selectedServices?.includes('Garbage collection') && 
-                  <input {...register("garbageVolumn")} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your gabage volumn?(Liter)" />}
+                  <input {...register("garbageVolumn",{ pattern: /^\d+$/ })} type="text" className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" placeholder="Input your gabage volumn?(Liter)" />}
+                  {errors?.garbageVolumn?.type === "pattern" && <span className="items-center font-small tracking-wide text-red-500 text-xs mt-1 ml-1">Only digit!</span>}
+
                 </div>
 
                 <div className="flex flex-col">

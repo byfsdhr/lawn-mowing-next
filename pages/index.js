@@ -25,6 +25,4 @@ export default function Home({ serviceData, articleData }) {
   );
 }
 
-// TODO change style of lastest Articles
 // TODO add video showcase
-// TODO add index for article and button link to that page, show list of articles
